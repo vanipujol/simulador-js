@@ -1,48 +1,79 @@
-let resultado = "";
-
-// Función para calcular el precio especial aplicando un descuento del 10%
-function specialPrice(price) {
-    return price * 0.9;
+class SignReader {
+    constructor(id, word, date) {
+        this.id = id;
+        this.word = word;
+        this.created = date;
+    }
 }
 
-// Función para validar que se ingrese un número válido
-function validateNumber(number){
+class SignController {
+    constructor() {
+        this.currentWords = []
+    }
+    addWord(word) {
+        this.currentWords.push(word);
+    }
 
-    if(!isNaN(number))
-        return number;
+    getCurrentPhrase() {
+        let words = []
 
-    do {
-        number = Number(prompt("El valor ingresado tiene que ser un número"));
-    }while (isNaN(number));
+        this.currentWords.forEach( sign => {
+            words.push(sign.word);
+        });
 
-    return number;
+        return words.join(" ");
+    }
+
+    reset() {
+        this.currentWords = [];
+    }
+
+    findSignById(id){
+        return this.currentWords.find((el) => el.id === id)
+    }
+
+    filterAddedSignToday(){
+        let today = new Date().toLocaleDateString();
+        let created = this.currentWords.filter((el) => el.created === today);
+
+        let words = []
+
+        created.forEach( sign => {
+            words.push(sign.word);
+        });
+
+
+        return words.join(" ");
+    }
 }
 
-// Función principal
+const reader = new SignController();
+
 function main() {
 
-    let productQuantity = Number(prompt("Ingrese la cantidad de productos que desea añadir al catálogo"));
-    for (let i = 0; i < productQuantity; i++) {
-        let productIndex = i + 1;
-        let productCode = validateNumber(Number(prompt("Ingrese el código del producto " + productIndex)));
+    let word;
+    let continueAdd;
+    let count = 0;
+    let today = new Date().toLocaleDateString()
 
-        let productName = prompt("Ingrese el nombre del producto");
-        let productPrice = validateNumber(Number(prompt("Ingrese el precio del producto")));
+    do {
+        word = prompt("Agrega una palabra para formar tu frase");
+        reader.addWord(new SignReader(count, word, today ));
+        count = count + 1;
+        continueAdd = prompt("Su palabra ingresada: " + word + "\n Desea continuar Si/No").toLowerCase();
+    }while (continueAdd !== "no")
 
-        resultado = resultado +  "\n Nombre del producto: " +  productName + "\n Código del producto: " +  productCode + "\n Precio especial: $"  + specialPrice(productPrice) + "\n";
-    }
+    alert ("Su frase ingresada: " + reader.getCurrentPhrase());
 
-    alert("Productos cargados: \n" + resultado);
+    let id = Number(prompt("Ingrese un id para buscar su palabra ingresada"));
 
-    let continueAdd = prompt("Desea hacer otro catálogo Si/No").toLowerCase();
-    if (continueAdd === "si") {
-        resultado = ""; // Reinicia la variable de resultado
-        main(); // Llama a la función principal nuevamente para crear otro catálogo
-    }else {
-        alert ("Muchas gracias por usar nuestros servicios");
-    }
+    alert("El id encontrado es: " + reader.findSignById(id).word);
 
-    return resultado;
+
+    alert("Palabras agregadas hoy: " + reader.filterAddedSignToday());
+
+    reader.reset();
+
 }
 
 main();
