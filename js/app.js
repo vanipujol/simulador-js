@@ -1,6 +1,6 @@
 /*
 Docta Finance es una web de finanzas donde a través de APIS se obtienen valores actualizados de monedas y criptos.
-- Función de login, se utiliza API para validación con diversos usuarios y contraseñas ()
+- Función de login, se utiliza API para validación con diversos usuarios y contraseñas (ej: Usuario: acharlota Contraseña: M9lbMdydMN)
 - Conversor de divisas con selección de la moneda o cripto deseada.
 - Gráfico de predicción SOL USDT donde se compara el valor de la cripto real vs valores generados randoms.
 - Gráfico "Precio en el tiempo" a 90 días de btc, eth y bnb
