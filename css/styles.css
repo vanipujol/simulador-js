@@ -249,7 +249,7 @@ img:hover {
 .container-cr {
   position: relative;
   width: 400px;
-  padding: 1px;
+  padding: 4px;
   background: #F3E7F6;
   display: flex;
   border-radius: 32px;

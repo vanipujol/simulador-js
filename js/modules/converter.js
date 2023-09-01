@@ -1,5 +1,17 @@
+/**
+    Este archivo JavaScript contiene funciones para obtener y manejar precios de moneda y criptomonedas,
+    actualizar valores, realizar conversiones de moneda y revertir la dirección de la conversión.
+*/
+
+//  Import the necessary modules for handling storage
 import {Storage, StorageController} from "./storage.js";
 
+/**
+ * This function fetches ARS prices from an API and handles data storage using the controller.
+ *
+ * @returns {object} -
+ * @param controller
+ */
 export async function arsPrices(controller) {
     let obj;
 
@@ -12,7 +24,12 @@ export async function arsPrices(controller) {
     return obj
 }
 
-
+/**
+ * This function fetches cryptocurrency prices from an API and handles storage using the provided controller.
+ *
+ * @returns {object} -
+ * @param controller
+ */
 export async function cryptoPrices(controller) {
     let obj;
 
@@ -25,6 +42,40 @@ export async function cryptoPrices(controller) {
     return obj
 }
 
+/**
+ * This function updates the displayed budget values based on the data in the controller.
+ *
+ * @returns {object} -
+ * @param controller
+ */
+export function budget(controller) {
+
+    let usdOficial = document.getElementById('usdOficial');
+    usdOficial.innerText = '$' + controller.getFromLocalStorage("oficial").value_avg;
+
+    let usdBlue = document.getElementById('usdBlue');
+    usdBlue.innerText = '$' + controller.getFromLocalStorage("blue").value_avg;
+
+    let euroOficial = document.getElementById('euroOficial');
+    euroOficial.innerText = '$' + controller.getFromLocalStorage("oficial_euro").value_avg;
+
+    let euroBlue = document.getElementById('euroBlue');
+    euroBlue.innerText = '$' + controller.getFromLocalStorage("blue_euro").value_avg;
+
+    let btc = document.getElementById('btc');
+    btc.innerText = 'US$ ' + controller.getFromLocalStorage("bitcoin").usd;
+
+    let eth = document.getElementById('eth');
+    eth.innerText = 'US$ ' + controller.getFromLocalStorage("ethereum").usd;
+
+    let bnb = document.getElementById('bnb');
+    bnb.innerText = 'US$ ' + controller.getFromLocalStorage("binancecoin").usd;
+}
+
+
+/**
+ * This function handles currency conversion based on user input and API data.
+ */
 export async function Converter() {
     const controller = new StorageController();
     const getInputValue = parseFloat(document.getElementById('input-num').value);
@@ -87,6 +138,9 @@ export async function Converter() {
         })
 }
 
+/**
+ * This function handles the conversion direction reversal in a converter tool.
+ */
 export function ReverseConverter() {
     const selected = document.getElementById('selected').value;
     const selectedOutput = document.getElementById('selected-output').value;
@@ -98,31 +152,5 @@ export function ReverseConverter() {
     document.getElementById('selected-output').value = selected;
 
     // Swap input and output values
-    document.getElementById('input-num').value = outputNumValue;
     document.getElementById('output-num').value = inputNumValue;
-}
-
-//Slide budget
-export function budget(controller) {
-
-    let usdOficial = document.getElementById('usdOficial');
-    usdOficial.innerText = '$' + controller.getFromLocalStorage("oficial").value_avg;
-
-    let usdBlue = document.getElementById('usdBlue');
-    usdBlue.innerText = '$' + controller.getFromLocalStorage("blue").value_avg;
-
-    let euroOficial = document.getElementById('euroOficial');
-    euroOficial.innerText = '$' + controller.getFromLocalStorage("oficial_euro").value_avg;
-
-    let euroBlue = document.getElementById('euroBlue');
-    euroBlue.innerText = '$' + controller.getFromLocalStorage("blue_euro").value_avg;
-
-    let btc = document.getElementById('btc');
-    btc.innerText = 'US$ ' + controller.getFromLocalStorage("bitcoin").usd;
-
-    let eth = document.getElementById('eth');
-    eth.innerText = 'US$ ' + controller.getFromLocalStorage("ethereum").usd;
-
-    let bnb = document.getElementById('bnb');
-    bnb.innerText = 'US$ ' + controller.getFromLocalStorage("binancecoin").usd;
 }

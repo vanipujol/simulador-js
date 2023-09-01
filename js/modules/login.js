@@ -1,4 +1,14 @@
-// Function async for validate login
+/**
+    Este archivo JavaScript contiene funciones para gestionar el inicio de sesión de usuarios,
+    mostrar alertas de éxito y error utilizando SweetAlert y permitir que los usuarios cierren sesión.
+    (ej de inicio de sesión --> usuario: acharlota contraseña: M9lbMdydMN)
+*/
+
+/**
+ * Asynchronously validates a user login by sending a POST request with the provided username and password to an authentication endpoint.
+ *
+ * @returns {Promise<object|boolean>}
+ */
 async function validateLogin() {
 
     let username = document.getElementById("name").value;
@@ -22,7 +32,11 @@ async function validateLogin() {
     return response
 }
 
-// Function to handle the login process
+/**
+ * Function to handle the login process
+ *
+ * @returns {Promise<object|boolean>}
+ */
 export async function login() {
     return new Promise((resolve) => {
 
@@ -38,9 +52,10 @@ export async function login() {
     });
 }
 
+/**
+ * Sweet alert "Inicio de sesión exitoso"
+ */
 export function sweetAlertSuccess(){
-
-    // Sweet alert "Inicio de sesión exitoso"
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -60,8 +75,10 @@ export function sweetAlertSuccess(){
 
 }
 
+/**
+ * Sweet alert "Credencial inválida"
+ */
 export function sweetAlertDenied(){
-    // Sweet alert "Credencial inválida"
     Swal.fire({
         icon: 'error',
         title: 'Credencial inválida',
@@ -69,7 +86,9 @@ export function sweetAlertDenied(){
     })
 }
 
-// Function log out
+/**
+ * Function log out
+ */
 export function logOut(){
     document.getElementById("log-out").addEventListener("click", function() {
         sessionStorage.removeItem("token");
@@ -77,3 +96,18 @@ export function logOut(){
     });
 }
 
+/**
+ * Parses a JSON Web Token (JWT) and extracts the payload.
+ *
+ * @param {string} token - The JWT to be parsed.
+ * @returns {object} - The parsed payload of the JWT.
+ */
+export function parseJwt (token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
