@@ -9,7 +9,12 @@
   text-align: right;
   color: gray;
 }
-
+@media (min-width: 768px) {
+  .margin-nav {
+    margin-left: 42vw;
+    font-size: 1.2rem;
+  }
+}
 #loginName{
   color: #252850;
   font-size: 1.2rem;
@@ -18,11 +23,6 @@
 .icon-user{
   color: #252850;
   margin: 0.3rem;
-}
-
-.navbar-center{
-  margin-left: 50rem;
-  font-size: 1.2rem;
 }
 
 .form{
@@ -248,7 +248,7 @@ img:hover {
 
 .container-cr {
   position: relative;
-  width: 400px;
+  width: 300px;
   padding: 4px;
   background: #F3E7F6;
   display: flex;
