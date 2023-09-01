@@ -1,6 +1,6 @@
-# Repositorio 🤑 Finance Docta
+# Repositorio 🤑 Docta Finance
 
-Este repositorio contiene el código fuente de un sitio web abocado al mercado de criptos y otras divisas, conversor, gráficos y estadísticas.
+Este repositorio contiene el código fuente de un sitio web que proporciona información financiera, herramientas de conversión y gráficos, así como características de autenticación y visualización de datos de criptomonedas y operaciones simuladas.
 
 ## Archivos HTML
 
