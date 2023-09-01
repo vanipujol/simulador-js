@@ -11,15 +11,15 @@ Este repositorio contiene el código fuente de un sitio web abocado al mercado d
 - css: contiene los estilos CSS del sitio web.
 - img: carpeta que almacena las imágenes utilizadas en el sitio.
 - js
-  > app.js: archivo js principal
-  > modules
-    > converter.js: contiene funciones para obtener y manejar precios de monedas y criptos.
-    > login.js: incluye funciones para gestionar el inicio de sesión.
-    > storage.js: este archivo contiene clases para gestionar varias instancias de almacenamiento.
-    > widgets.js: incluye funciones para obtener y almacenar precios, generar gráficos, actualizar estadisticas en widgets, tablas y simular datos para un panel ed control.       
-  > plugins
-    > Chart.extension.js: libreria js para gráficos.
-    > chartjs.min.js: libreria js para gráficos.
+  - app.js: archivo js principal
+  - modules
+    - converter.js: contiene funciones para obtener y manejar precios de monedas y criptos.
+    - login.js: incluye funciones para gestionar el inicio de sesión.
+    - storage.js: este archivo contiene clases para gestionar varias instancias de almacenamiento.
+    - widgets.js: incluye funciones para obtener y almacenar precios, generar gráficos, actualizar estadisticas en widgets, tablas y simular datos para un panel ed control.       
+  - plugins
+    - Chart.extension.js: libreria js para gráficos.
+    - chartjs.min.js: libreria js para gráficos.
   
 ## API
 
